@@ -271,7 +271,7 @@ D_MultipleRigidPoseSparse::estimatePose(const cv::Mat &image, int object) {
       cv::solvePnPRansac(objectPoints, imagePoints, _camera_mat,
                          cv::Mat::zeros(4, 1, CV_64FC1), rvec, tvec, false,
                          _num_iter_ransac, max_dist, .99,
-                         inliers_cpu, cv::SOLVEPNP_P3P);
+                         inliers_cpu, cv::SOLVEPNP_P3P );
       double T[] = {tvec.at<double>(0), tvec.at<double>(1),
                     tvec.at<double>(2)};
       double R[] = {rvec.at<double>(0), rvec.at<double>(1),

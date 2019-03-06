@@ -22,7 +22,10 @@ else()
     set(CUDA_OPTIONS ${GENCODE_SM30} ${GENCODE_SM35} ${GENCODE_SM50} ${GENCODE_SM52} ${GENCODE_SM61} ${VERBOSE_PTXAS})
 endif()
 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_FORCE_INLINES")  
+# SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
 
 catkin_package(
   INCLUDE_DIRS include ${CUDA_INCLUDE_DIRS}
@@ -51,7 +54,7 @@ cuda_add_library(${PROJECT_NAME}
   src/d_optical_and_ar_flow.cpp
   src/optical_flow_kernels.cu
   src/utility_kernels.cu
-  OPTIONS ${CUDA_OPTIONS}
+  OPTIONS ${CUDA_OPTIONS} ${CMAKE_CXX_FLAGS}
 )
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}

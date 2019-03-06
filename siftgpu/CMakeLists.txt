@@ -24,7 +24,7 @@ else()
     set(CUDA_OPTIONS ${GENCODE_SM30} ${GENCODE_SM35} ${GENCODE_SM50} ${GENCODE_SM52} ${GENCODE_SM61} ${VERBOSE_PTXAS})
 endif()
 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DCUDA_SIFTGPU_ENABLED")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DCUDA_SIFTGPU_ENABLED -D_FORCE_INLINES")
 # disable warnings thrown by siftgpu compilation
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-int-to-pointer-cast -Wno-write-strings -Wno-unused-result")
 

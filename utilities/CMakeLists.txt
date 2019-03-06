@@ -7,6 +7,7 @@ find_package(catkin REQUIRED COMPONENTS
 find_package(HDF5 COMPONENTS CXX)
 find_package(Boost COMPONENTS system filesystem REQUIRED)
 
+
 find_package(CUDA 6.5 REQUIRED)
 set(GENCODE_SM20 -gencode=arch=compute_20,code=sm_20)
 set(GENCODE_SM30 -gencode=arch=compute_30,code=sm_30)
@@ -18,13 +19,17 @@ set(CUDA_NVCC_FLAGS -O3;--compiler-options;-fPIC;-ftz=true;-prec-sqrt=false;-pre
 set(CUDA_PROPAGATE_HOST_FLAGS OFF) # don't propagate c++11 options to nvcc
 if (${CUDA_VERSION_MAJOR} LESS 7)
     set(CUDA_OPTIONS ${GENCODE_SM20} ${GENCODE_SM30} ${GENCODE_SM35} ${VERBOSE_PTXAS})
+# elseif(${CUDA_VERSION_MAJOR} LESS 8)
+#     set(CUDA_OPTIONS ${GENCODE_SM20} ${GENCODE_SM30} ${GENCODE_SM35} ${GENCODE_SM50} ${GENCODE_SM52} ${VERBOSE_PTXAS})
 elseif(${CUDA_VERSION_MAJOR} LESS 8)
-    set(CUDA_OPTIONS ${GENCODE_SM20} ${GENCODE_SM30} ${GENCODE_SM35} ${GENCODE_SM50} ${GENCODE_SM52} ${VERBOSE_PTXAS})
+    set(CUDA_OPTIONS ${GENCODE_SM30} ${GENCODE_SM35} ${GENCODE_SM50} ${GENCODE_SM52} ${VERBOSE_PTXAS})
 else()
     set(CUDA_OPTIONS ${GENCODE_SM30} ${GENCODE_SM35} ${GENCODE_SM50} ${GENCODE_SM52} ${GENCODE_SM61} ${VERBOSE_PTXAS})
 endif()
 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_FORCE_INLINES")  
+# SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 catkin_package(
   INCLUDE_DIRS include ${CUDA_INCLUDE_DIRS} ${HDF5_INCLUDE_DIRS}
@@ -49,7 +54,7 @@ include_directories(include
 cuda_add_library(${PROJECT_NAME}
   src/cub_radix_sorter_kernels.cu
   src/utilities.cpp
-  OPTIONS ${CUDA_OPTIONS}
+  OPTIONS ${CUDA_OPTIONS} ${CMAKE_CXX_FLAGS}
 )
 
 target_link_libraries(${PROJECT_NAME}
