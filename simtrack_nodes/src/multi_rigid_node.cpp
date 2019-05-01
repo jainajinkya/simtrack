@@ -289,6 +289,7 @@ void MultiRigidNode::depthAndColorCb(
     const sensor_msgs::ImageConstPtr &depth_msg,
     const sensor_msgs::ImageConstPtr &rgb_msg,
     const sensor_msgs::CameraInfoConstPtr &rgb_info_msg) {
+
   // we'll assume registration is correct so that rgb and depth camera matrices
   // are equal
   camera_matrix_rgb_ = composeCameraMatrix(rgb_info_msg);
@@ -397,6 +398,7 @@ void MultiRigidNode::updatePose(const cv_bridge::CvImageConstPtr &cv_rgb_ptr,
   // process frame if objects loaded in tracker
   // ------------------------------------------
   if (multi_rigid_tracker_->getNumberOfObjects() > 0) {
+    // std::cout << "Loaded " << multi_rigid_tracker_->getNumberOfObjects() << " objects for tracking!" << std::endl;
 
     // update detector pose in tracker
     {
@@ -439,6 +441,8 @@ void MultiRigidNode::updatePose(const cv_bridge::CvImageConstPtr &cv_rgb_ptr,
         curr_pose_stamped.header.stamp = cv_rgb_ptr->header.stamp;
         pose_publishers_[objects_.at(object_index).label_]
             .publish(curr_pose_stamped);
+
+        // std::cout << "Pose of object " << objects_.at(object_index).label_ << ":\n" << curr_pose_stamped << std::endl;
       }
     }
 
@@ -520,6 +524,9 @@ void MultiRigidNode::updatePose(const cv_bridge::CvImageConstPtr &cv_rgb_ptr,
       if (recording_flags_.optical_flow_)
         multi_rigid_tracker_->saveOpticalFlow(file);
     }
+  }
+  else{
+    std::cout << "No object loaded in the Tracker!" << std::endl;
   }
   frame_count_++;
 }

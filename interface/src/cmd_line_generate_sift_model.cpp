@@ -147,6 +147,8 @@ int main(int argc, char **argv) {
 
   // process all views
   for (int view_ind = 0; view_ind < rot_x.size(); ++view_ind) {
+    std::cout << "Press enter to go to next view!" << std::endl;
+    std::cin.get();
 
     // compute view rotation (rot_x -> rot_y)
     Eigen::Matrix3d rot_view;

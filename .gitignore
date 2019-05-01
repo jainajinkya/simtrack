@@ -1,6 +1,13 @@
 /data/object_models/ros_fuerte/ros_fuerte_SIFT.h5
 /data/object_models/ros_groovy/ros_groovy_SIFT.h5
 /data/object_models/ros_hydro/ros_hydro_SIFT.h5
+/data/object_models/lemon/*
+/data/object_models/deprecated/*
+/data/object_models/strawberry/*
+/data/object_models/cranberries/*
+/data/object_models/koalas_march/*
+/data/object_models/power_drill/*
+/data/object_models/potted_meat_can/*
 /simtrack/CMakeLists.txt.user*
 CMakeLists.txt.user*
 *~

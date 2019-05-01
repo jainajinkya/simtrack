@@ -1,0 +1,10 @@
+simtrack/model_names:
+  - ros_fuerte
+  # - strawberry
+  # - soup_can
+  # - chips_can
+  # - potted_meat_can
+  # - sunmaid_cranberries
+  # - koalas_march
+  - stapler_upper_arm
+  # - stapler_lower_arm
