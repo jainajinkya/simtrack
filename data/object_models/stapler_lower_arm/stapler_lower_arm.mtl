@@ -1,18 +1,13 @@
-newmtl stapler_lower_arm_0
-map_Kd stapler_lower_arm_T1.jpg
-newmtl stapler_lower_arm_1
-map_Kd stapler_lower_arm_T2.jpg
-newmtl stapler_lower_arm_2
-map_Kd stapler_lower_arm_T3.jpg
-newmtl stapler_lower_arm_3
-map_Kd stapler_lower_arm_T4.jpg
-newmtl stapler_lower_arm_4
-map_Kd stapler_lower_arm_T5.jpg
-newmtl stapler_lower_arm_5
-map_Kd stapler_lower_arm_T6.jpg
-newmtl stapler_lower_arm_6
-map_Kd stapler_lower_arm_T7.jpg
-newmtl stapler_lower_arm_7
-map_Kd stapler_lower_arm_T8.jpg
-newmtl stapler_lower_arm_8
-map_Kd stapler_lower_arm_T9.jpg
+# Blender MTL File: 'None'
+# Material Count: 1
+
+newmtl Material.001
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd stapler_lower_arm.png
