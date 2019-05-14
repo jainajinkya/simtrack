@@ -410,9 +410,11 @@ void PyramidCU::GetFeatureDescriptors()
 		for(int j = 0; j < param._dog_level_num; j++, ftex++, idx++, got++)
 		{
 			if(_levelFeatureNum[idx]==0) continue;
-            ProgramCU::ComputeDescriptor(ftex, got, _descriptorTex, IsUsingRectDescription());//process
-			_descriptorTex->CopyToHost(pd); //readback descriptor
-			pd += 128*_levelFeatureNum[idx];
+			if(ftex->_cuData!=NULL && _descriptorTex->_cuData!=NULL){
+	            ProgramCU::ComputeDescriptor(ftex, got, _descriptorTex, IsUsingRectDescription());//process
+				_descriptorTex->CopyToHost(pd); //readback descriptor
+				pd += 128*_levelFeatureNum[idx];
+			}
 		}
 	}
 

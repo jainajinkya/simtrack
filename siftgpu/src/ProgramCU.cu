@@ -403,6 +403,7 @@ template<int FW> void ProgramCU::FilterImage(CuTexImage *dst, CuTexImage *src, C
 	int width = src->GetImgWidth(), height = src->GetImgHeight();
 
 	//horizontal filtering
+	if(dst->_cuData!=NULL && src->_cuData!=NULL && buf -> _cuData!=NULL){
 	src->BindTexture(texData);
 	dim3 gridh((width +  FILTERH_TILE_WIDTH - 1)/ FILTERH_TILE_WIDTH, height);
 	dim3 blockh(FILTERH_TILE_WIDTH);
@@ -415,6 +416,7 @@ template<int FW> void ProgramCU::FilterImage(CuTexImage *dst, CuTexImage *src, C
 	dim3 blockv(FILTERV_TILE_WIDTH, FILTERV_BLOCK_HEIGHT);
 	FilterV<FW><<<gridv, blockv>>>((float*)dst->_cuData, width, height); 
 	CheckErrorCUDA("FilterV");
+	}
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -937,6 +939,7 @@ void __global__ ComputeOrientation_Kernel(float4* d_list,
 void ProgramCU::ComputeOrientation(CuTexImage* list, CuTexImage* got, CuTexImage*key, 
 								   float sigma, float sigma_step, int existing_keypoint)
 {
+	if(list->_cuData!=NULL && got->_cuData!=NULL && key->_cuData!=NULL){
 	int len = list->GetImgWidth();
 	if(len <= 0) return;
 	int width = got->GetImgWidth(), height = got->GetImgHeight();
@@ -962,6 +965,7 @@ void ProgramCU::ComputeOrientation(CuTexImage* list, CuTexImage* got, CuTexImage
 		existing_keypoint, GlobalUtil::_SubpixelLocalization, GlobalUtil::_KeepExtremumSign);
 
 	ProgramCU::CheckErrorCUDA("ComputeOrientation");
+}
 }
 
 template <bool DYNAMIC_INDEXING> void __global__ ComputeDescriptor_Kernel(float4* d_des, int num, 

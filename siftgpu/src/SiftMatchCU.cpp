@@ -130,6 +130,7 @@ int  SiftMatchCU::GetGuidedSiftMatch(int max_match, int match_buffer[][2], float
 	if(_initialized ==0) return 0;
 	if(_num_sift[0] <= 0 || _num_sift[1] <=0) return 0;
 	if(_have_loc[0] == 0 || _have_loc[1] == 0) return 0;
+
 	ProgramCU::MultiplyDescriptorG(_texDes, _texDes+1, _texLoc, _texLoc + 1,
 		&_texDot, (mbm? &_texCRT: NULL), H, hdistmax, F, fdistmax);
 	return GetBestMatch(max_match, match_buffer, distmax, ratiomax, mbm);
@@ -140,6 +141,7 @@ int  SiftMatchCU::GetSiftMatch(int max_match, int match_buffer[][2], float distm
 {
 	if(_initialized ==0) return 0;
 	if(_num_sift[0] <= 0 || _num_sift[1] <=0) return 0;
+
 	ProgramCU::MultiplyDescriptor(_texDes, _texDes + 1, &_texDot, (mbm? &_texCRT: NULL));
 	return GetBestMatch(max_match, match_buffer, distmax, ratiomax, mbm);
 }
