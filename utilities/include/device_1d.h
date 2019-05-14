@@ -114,7 +114,7 @@ void Device1D<Type>::copyTo(std::vector<Type> &target) const {
                                  cudaMemcpyDeviceToHost);
 
   if (error != cudaSuccess)
-    throw cudaException("Device1D::copyTo: ", error);
+    throw cudaException("Device1D::copyTo:: Type 1:", error);
 }
 
 template <class Type>
