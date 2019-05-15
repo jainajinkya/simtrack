@@ -20,11 +20,6 @@
 
   <!-- To be used with vector-->
   <node name="simtrack" pkg="simtrack_nodes" type="multi_rigid_node" output="screen">
-<!--   <remap from="rgb" to="/kinect/qhd/image_color_rect" />
-  <remap from="rgb/compressed" to="/kinect/qhd/image_color_rect/compressed" />
-  <remap from="rgb_info" to="/kinect/qhd/camera_info" />
-  <remap from="depth" to="/kinect/qhd/image_depth_rect" />
-  <remap from="depth/compressed" to="/kinect/qhd/image_depth_rect/compressed" /> -->
   <remap from="rgb" to="/kinect/qhd/image_color_rect" />
   <remap from="rgb/compressed" to="/kinect/qhd/image_color_rect/compressed" />
   <remap from="rgb_info" to="/kinect/qhd/camera_info" />

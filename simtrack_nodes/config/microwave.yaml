@@ -1,0 +1,6 @@
+simtrack/model_names:
+  # - ros_fuerte
+  # - soup_can
+  # - chips_can
+  - potted_meat_can
+  - caution_label
