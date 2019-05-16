@@ -1,5 +1,6 @@
 simtrack/model_names:
   # - ros_fuerte
   # - soup_can
-  # - chips_can
-  - bender
+  - chips_can
+  - drawer
+  # - bender
